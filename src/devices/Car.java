@@ -1,30 +1,37 @@
 package devices;
 
-public class Car {
-    final String model;
-    final String producer;
+public class Car extends Device {
+
     String color;
-    final int year;
 
     public Integer price;
+    final String producer;
+    final String model;
+    final Integer yearOfProduction;
 
 
-    public Car(String model, String producer, String color, int year, Integer price) {
-        this.model = model;
-        this.producer = producer;
+    public Car(String color, Integer price, String producer, String model, Integer yearOfProduction) {
         this.color = color;
-        this.year = year;
         this.price = price;
+        this.producer = producer;
+        this.model = model;
+        this.yearOfProduction = yearOfProduction;
+    }
+
+    @Override
+    public void turnOn() {
+
+        super.turnOn();
     }
 
     @Override
     public String toString() {
-        return "devices.Car{" +
-                "model='" + model + '\'' +
-                ", producer='" + producer + '\'' +
-                ", color='" + color + '\'' +
-                ", year=" + year +
+        return "Car{" +
+                "color='" + color + '\'' +
                 ", price=" + price +
-                '}';
+                ", producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                "} " + super.toString();
     }
 }
