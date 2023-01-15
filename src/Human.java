@@ -7,9 +7,24 @@ public class Human {
     int weight;
     int height;
     Animal pet;
-    Car car;
+    private Car car;
     private Double salary;
 
+
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        if (car.price <= salary) {
+            System.out.println("Udało się kupić za gotówkę");
+            this.car = car;
+        } else if (car.price/12 <= salary) {
+            System.out.println("Udało się kupić na kredyt (no trudno)");
+            this.car = car;
+        } else {
+            System.out.println("Zapisz się na studia i znajdź nową robotę albo idź po podwyżkę");
+        }
+    }
 
     public Double getSalary() {
         System.out.println("Data pobrania wynagrodzenia: " + LocalDateTime.now());
