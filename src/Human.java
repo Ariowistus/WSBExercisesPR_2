@@ -4,4 +4,5 @@ public class Human {
     int weight;
     int height;
     Animal pet;
+    Car car;
 }
