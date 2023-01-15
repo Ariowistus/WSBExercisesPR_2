@@ -29,4 +29,14 @@ public class Animal {
             System.out.println("Too late, I am dead");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", species='" + species + '\'' +
+                '}';
+    }
 }

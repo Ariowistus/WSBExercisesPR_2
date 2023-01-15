@@ -1,5 +1,7 @@
+import devices.Car;
+import devices.Car;
+
 import java.time.LocalDateTime;
-import java.util.Locale;
 
 public class Human {
     String name;
@@ -40,6 +42,19 @@ public class Human {
         System.out.println("Konieczność odebrania aneksu do umowy od Pani Ani z kadr.");
         System.out.println("ZUS i US już wiedzą o zmianie wypłaty nie uciekniesz .");
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", pet=" + pet +
+                ", car=" + car +
+                ", salary=" + salary +
+                '}';
     }
 }
 
