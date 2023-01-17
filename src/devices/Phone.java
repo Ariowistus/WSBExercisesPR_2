@@ -27,36 +27,31 @@ public class Phone extends Device implements Salleable {
     }
     public void installAnnApp(String appName) {
         System.out.println("Installing " + appName + "...");
-        // implementation to install an app with the given name
-        // ...
+
         System.out.println(appName + " installed successfully!");
     }
 
     public void installAnnApp(String appName, String appVersion) {
         System.out.println("Installing " + appName + " version " + appVersion + "...");
-        // implementation to install an app with the given name and version
-        // ...
+
         System.out.println(appName + " version " + appVersion + " installed successfully!");
     }
 
     public void installAnnApp(String appName, String appVersion, String serverAddress) {
         System.out.println("Installing " + appName + " version " + appVersion + " from " + serverAddress + "...");
-        // implementation to install an app with the given name, version, and server address
-        // ...
+
         System.out.println(appName + " version " + appVersion + " installed successfully from " + serverAddress + "!");
     }
 
     public void installAnnApp(List<String> appNames) {
         System.out.println("Installing apps: " + appNames.toString() + "...");
-        // implementation to install multiple apps with the given names
-        // ...
+
         System.out.println("All apps: " + appNames.toString() + " installed successfully!");
     }
 
     public void installAnnApp(URL appURL) {
         System.out.println("Installing app from " + appURL.toString() + "...");
-        // implementation to install an app from the given URL
-        // ...
+
         System.out.println("App installed successfully from " + appURL.toString() + "!");
     }
 
