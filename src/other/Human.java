@@ -1,18 +1,18 @@
 package other;
 
+import creatures.Animal;
 import devices.Car;
 import devices.Phone;
 
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Human {
     public String name;
     public Phone phone;
     int age;
 
-    Animal pet;
+    public Animal pet;
      Car car;
     private Double salary;
     public Double cash;

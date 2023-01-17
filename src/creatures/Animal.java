@@ -1,6 +1,9 @@
-package other;
+package creatures;
 
-public class Animal implements Salleable {
+import other.Human;
+import other.Salleable;
+
+public abstract class Animal implements Salleable, Feedable {
     String name;
     int age;
     Double weight;
@@ -33,15 +36,8 @@ public class Animal implements Salleable {
         System.out.println("Transakcja zakończona, nowy właściciel zwierzęcia: " + buyer.name);
     }
 
-    void feed() {
-        if (weight > 0) {
-            weight += 1;
-            System.out.println("Thx for food. My weight is now " + weight);
-        } else {
-            System.out.println("Too late, I am dead");
-        }
-    }
-    void takeForAWalk() {
+
+    public void takeForAWalk() {
         if (weight > 0) {
             weight -= 1;
             System.out.println("Thx for a walk. My weight is now " + weight);
@@ -52,7 +48,7 @@ public class Animal implements Salleable {
 
     @Override
     public String toString() {
-        return "other.Animal{" +
+        return "creatures.Animal{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", weight=" + weight +
