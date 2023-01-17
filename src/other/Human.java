@@ -31,7 +31,10 @@ public class Human {
         this.garage = garage;
     }
 
-
+    public Human(List<Car> garage, String name) {
+        this.garage = garage;
+        this.name = name;
+    }
 
     public void sell() {
         if (isForSale) {
@@ -92,12 +95,12 @@ public class Human {
         this.salary = salary;
     }
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
 
 

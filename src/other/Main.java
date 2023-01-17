@@ -7,33 +7,33 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        List<Car> sellerGarge = new ArrayList<>();
-        List<Car> buyerGarge = new ArrayList<>();
-        Car mercedes = new Disel("white", 34000, "Mercedes", "CLS", 2019);
-        sellerGarge.add(mercedes);
-        Human seller = new Human("Jan", 30, 10000.0, 10000.0, sellerGarge);
-        Human buyer = new Human("Adam", 40, 50000.0, 50000.0, buyerGarge);
+        List<Human> owners = new ArrayList<>();
+        List<Car> sellerGarage = new ArrayList<>();
+        List<Car> buyerGarage = new ArrayList<>();
+        Human seller = new Human("Jan", 30, 1000.0, 1000.0, sellerGarage);
+        Human buyer = new Human("Adam", 30, 1000.0, 1000.0, buyerGarage);
+        owners.add(seller);
 
 
+        Car mercedes = new Disel("Czarny", 100000, "Mercedes", "CLS", 2019, owners, owners.get(0));
+        System.out.println(mercedes);
+        Car volvo = new Disel("Czarny", 100000, "Volvo", "EX90", 2019, owners, owners.get(0));
+        System.out.println(volvo);
+        sellerGarage.add(mercedes);
+        sellerGarage.add(volvo);
 
+        System.out.println(owners);
 
-        try {
+        mercedes.sell(seller, buyer, 1000.0);
+        System.out.println(owners);
+        System.out.println(mercedes);
 
-            mercedes.sell(seller, buyer, 30000.0);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-
-
-        }
-
-        try {
-            System.out.println("Garaż kupującego: "+buyerGarge.get(0));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-
+        boolean check= mercedes.wasOwner(seller);
+        System.out.println(check);
+        boolean check2= mercedes.wasSoldTo(seller, buyer);
+        System.out.println(check2);
+        int CountOfTransactions=mercedes.numberOfTransactions();
+        System.out.println(CountOfTransactions);
 
 
     }

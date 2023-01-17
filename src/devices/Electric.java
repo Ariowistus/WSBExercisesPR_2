@@ -2,9 +2,13 @@ package devices;
 
 import other.Human;
 
+import java.util.List;
+
 public class Electric extends Car {
-    public Electric(String color, Integer price, String producer, String model, Integer yearOfProduction) {
-        super(color, price, producer, model, yearOfProduction);
+
+
+    public Electric(String color, Integer price, String producer, String model, Integer yearOfProduction, List<Human> owners, Human currentOwner) {
+        super(color, price, producer, model, yearOfProduction, owners, currentOwner);
     }
 
     @Override
