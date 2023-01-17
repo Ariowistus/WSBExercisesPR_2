@@ -6,28 +6,33 @@ import devices.Phone;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Human {
     public String name;
+    private static final int DEFAULT_GARAGE_SIZE = 5;
+    public int garageSize;
     public Phone phone;
     int age;
 
     public Animal pet;
-     Car car;
+    public List<Car> garage;
     private Double salary;
     public Double cash;
     private boolean isForSale = false;
 
-
-    public Human(String name, int age, Double cash, Double salary, Animal pet, Car car, Phone phone) {
+    public Human(String name, int age, Double salary, Double cash) {
         this.name = name;
         this.age = age;
-        this.cash = cash;
         this.salary = salary;
-        this.pet = pet;
-        this.car = car;
-        this.phone = phone;
+        this.cash = cash;
+        this.garage = new ArrayList<>(DEFAULT_GARAGE_SIZE);
+    }
 
+    public Human(List<Car> garage,int garageSize) {
+        this.garage = garage;
+        this.garageSize = garageSize;
     }
 
     public void sell() {
@@ -38,23 +43,40 @@ public class Human {
         }
     }
 
-    public Car getCar() {
-        return car;
+    public int getGarageSize() {
+        return garage.size();
     }
-    public void setCar(Car car) {
-        if(car == null){
-            throw new NullPointerException("Seller sprzedał ostatni samochód");
-        }
-        if (car.price <=cash) {
-            System.out.println("Udało się kupić za gotówkę");
-            this.car = car;
-        } else if (car.price <= salary) {
-            System.out.println("Udało się kupić na kredyt (no trudno)");
-            this.car = car;
-        } else {
-            System.out.println("Zapisz się na studia i znajdź nową robotę albo idź po podwyżkę");
-        }
+
+    public Car getCar(int parkingSpot) {
+        return garage.get(parkingSpot);
     }
+
+    public void setCar(int parkingSpot, Car car) {
+        garage.set(parkingSpot, car);
+    }
+
+
+    public void sortCarsByYear() {
+        garage.sort((car1, car2) -> car1.getYearOfProduction() - car2.getYearOfProduction());
+    }
+
+//    public Car getCar() {
+//        return car;
+//    }
+//    public void setCar(Car car) {
+//        if(car == null){
+//            throw new NullPointerException("Seller sprzedał ostatni samochód");
+//        }
+//        if (car.price <=cash) {
+//            System.out.println("Udało się kupić za gotówkę");
+//            this.car = car;
+//        } else if (car.price <= salary) {
+//            System.out.println("Udało się kupić na kredyt (no trudno)");
+//            this.car = car;
+//        } else {
+//            System.out.println("Zapisz się na studia i znajdź nową robotę albo idź po podwyżkę");
+//        }
+//    }
 
     public Double getSalary() {
         System.out.println("Data pobrania wynagrodzenia: " + LocalDateTime.now());
@@ -72,48 +94,10 @@ public class Human {
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "Human{" +
-                "name='" + name + '\'' +
-                ", phone=" + phone +
-                ", age=" + age +
-                ", pet=" + pet +
-                ", car=" + car +
-                ", salary=" + salary +
-                ", cash=" + cash +
-                '}';
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Human human = (Human) o;
 
-        if (age != human.age) return false;
-        if (isForSale != human.isForSale) return false;
-        if (!name.equals(human.name)) return false;
-        if (!phone.equals(human.phone)) return false;
-        if (!pet.equals(human.pet)) return false;
-        if (!car.equals(human.car)) return false;
-        if (!salary.equals(human.salary)) return false;
-        return cash.equals(human.cash);
-    }
 
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + phone.hashCode();
-        result = 31 * result + age;
-        result = 31 * result + pet.hashCode();
-        result = 31 * result + car.hashCode();
-        result = 31 * result + salary.hashCode();
-        result = 31 * result + cash.hashCode();
-        result = 31 * result + (isForSale ? 1 : 0);
-        return result;
-    }
 
 
 }

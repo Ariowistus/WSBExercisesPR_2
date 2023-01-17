@@ -23,23 +23,47 @@ public abstract class Car extends Device implements Salleable {
 
     abstract void refuel();
 
-
-
-    public void sell(Human seller, Human buyer, Double price) {
-        if(seller.getCar() != this){
-            System.out.println("Sprzedający nie posiada tego zwierzęcia");
-            return;
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        // Check if seller has the car in their garage
+        if (!seller.garage.contains(this)) {
+            throw new Exception("Seller does not have the car in their garage.");
         }
-        if(buyer.cash < price){
-            System.out.println("Kupujący nie ma wystarczająco pieniędzy");
-            return;
+        // Check if buyer has room in their garage
+        if (buyer.garage.size() == buyer.garageSize) {
+            throw new Exception("Buyer does not have room in their garage.");
         }
+        // Check if buyer has enough cash
+        if (buyer.cash < price) {
+            throw new Exception("Buyer does not have enough cash.");
+        }
+        // Remove car from seller's garage
+        seller.garage.remove(this);
+        // Add car to buyer's garage in the first empty slot
+        buyer.garage.add(this);
+        // Subtract the price from the buyer's cash
         buyer.cash -= price;
+        // Add the price to the seller's cash
         seller.cash += price;
-        buyer.setCar(this);
-        seller.setCar(null);
-        System.out.println("Transakcja zakończona, nowy właściciel zwierzęcia: " + buyer.name);
+        System.out.println("Transaction successful: " + buyer.name + " bought a " + this.model + " from " + seller.name + " for $" + price);
     }
+
+
+
+//    public void sell(Human seller, Human buyer, Double price) {
+//        if(seller.getCar() != this){
+//            System.out.println("Sprzedający nie posiada tego zwierzęcia");
+//            return;
+//        }
+//        if(buyer.cash < price){
+//            System.out.println("Kupujący nie ma wystarczająco pieniędzy");
+//            return;
+//        }
+//        buyer.cash -= price;
+//        seller.cash += price;
+//        buyer.setCar(this);
+//        seller.setCar(null);
+//        System.out.println("Transakcja zakończona, nowy właściciel zwierzęcia: " + buyer.name);
+//    }
 
     @Override
     public String toString() {
@@ -76,5 +100,11 @@ public abstract class Car extends Device implements Salleable {
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + (yearOfProduction != null ? yearOfProduction.hashCode() : 0);
         return result;
+    }
+
+
+
+    public Integer getYearOfProduction() {
+        return yearOfProduction;
     }
 }
