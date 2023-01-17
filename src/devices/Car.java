@@ -24,27 +24,27 @@ public abstract class Car extends Device implements Salleable {
     abstract void refuel();
 
     public void sell(Human seller, Human buyer, Double price) throws Exception {
-        // Check if seller has the car in their garage
+        // Sprawdzenie czy sprzedawca posiada pojazd w swoim garażu
         if (!seller.garage.contains(this)) {
-            throw new Exception("Seller does not have the car in their garage.");
+            throw new Exception("Sprzedawca nie posiada pojazdu w swoim garażu.");
         }
-        // Check if buyer has room in their garage
-        if (buyer.garage.size() == buyer.garageSize) {
-            throw new Exception("Buyer does not have room in their garage.");
-        }
-        // Check if buyer has enough cash
+
+        // Sprawdzenie czy kupujący ma wystarczającą ilość gotówki
         if (buyer.cash < price) {
-            throw new Exception("Buyer does not have enough cash.");
+            throw new Exception("Kupujący nie ma wystarczającej ilości gotówki.");
         }
-        // Remove car from seller's garage
+
+        // Usunięcie pojazdu z garażu sprzedawcy
         seller.garage.remove(this);
-        // Add car to buyer's garage in the first empty slot
+
+        // Dodanie pojazdu do garażu kupującego
         buyer.garage.add(this);
-        // Subtract the price from the buyer's cash
+        // Odejmowanie ceny od gotówki kupującego
         buyer.cash -= price;
-        // Add the price to the seller's cash
+        // Dodanie ceny do gotówki sprzedawcy
         seller.cash += price;
-        System.out.println("Transaction successful: " + buyer.name + " bought a " + this.model + " from " + seller.name + " for $" + price);
+
+        System.out.println("Transakcja zakończona sukcesem: " + buyer.name + " kupił " + this.model + " od " + seller.name + " za " + price + " złotych");
     }
 
 

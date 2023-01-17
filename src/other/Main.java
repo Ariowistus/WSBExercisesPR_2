@@ -1,35 +1,37 @@
 package other;
 
-import creatures.Animal;
-import creatures.Pet;
 import devices.*;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args)  {
-        List<Car> myGarage = new ArrayList<>();
-        myGarage.add(new Electric("Black", 25000, "Audi", "A5", 2007));
-        myGarage.add(new Disel("Red", 30000, "BMW", "X5", 2006));
-        myGarage.add(new Electric("White", 35000, "Mercedes", "E", 2005));
-
-        Human me = new Human(myGarage, 3);
-
-        System.out.println(me.getCar(0));
-        me.setCar(0, new Electric("BMW", 20000, "Audi", "A5", 2007));
-        System.out.println(me.getCar(0));
-        System.out.println(myGarage);
-        me.sortCarsByYear();
-        System.out.println(myGarage);
-        me.getGarageSize();
-        System.out.println(me.getGarageSize());
+    public static void main(String[] args) throws Exception {
+        List<Car> sellerGarge = new ArrayList<>();
+        List<Car> buyerGarge = new ArrayList<>();
+        Car mercedes = new Disel("white", 34000, "Mercedes", "CLS", 2019);
+        sellerGarge.add(mercedes);
+        Human seller = new Human("Jan", 30, 10000.0, 10000.0, sellerGarge);
+        Human buyer = new Human("Adam", 40, 50000.0, 50000.0, buyerGarge);
 
 
 
 
+        try {
+
+            mercedes.sell(seller, buyer, 30000.0);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+
+        }
+
+        try {
+            System.out.println("Garaż kupującego: "+buyerGarge.get(0));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
 

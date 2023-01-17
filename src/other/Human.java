@@ -22,18 +22,16 @@ public class Human {
     public Double cash;
     private boolean isForSale = false;
 
-    public Human(String name, int age, Double salary, Double cash) {
+    public Human(String name, int age, Double salary, Double cash,List<Car> garage) {
         this.name = name;
         this.age = age;
         this.salary = salary;
         this.cash = cash;
         this.garage = new ArrayList<>(DEFAULT_GARAGE_SIZE);
+        this.garage = garage;
     }
 
-    public Human(List<Car> garage,int garageSize) {
-        this.garage = garage;
-        this.garageSize = garageSize;
-    }
+
 
     public void sell() {
         if (isForSale) {

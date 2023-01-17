@@ -13,7 +13,7 @@ public class Electric extends Car {
     }
 
     @Override
-    public void sell(Human seller, Human buyer, Double price) throws Exception {
+    public void sell(Human seller, Human buyer, Double price)  {
 
     }
 
