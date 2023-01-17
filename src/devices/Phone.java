@@ -13,18 +13,50 @@ public class Phone extends Device implements Salleable {
 
     String color;
     int price;
+    List<Application> apps;
     final String producer;
     final String model;
     final Integer yearOfProduction;
 
 
-    public Phone(String color, int price, String producer, String model, Integer yearOfProduction) {
+    public Phone(String color, int price, List<Application> apps, String producer, String model, Integer yearOfProduction) {
         this.color = color;
         this.price = price;
+        this.apps = apps;
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
     }
+
+    public void installApp(String appName, Human buyer, Double appPrice) {
+        if(buyer.cash < appPrice){
+            System.out.println("Kupujący nie ma wystarczająco pieniędzy");
+            return;
+        }
+        buyer.cash -= appPrice;
+        apps.add(new Application(appName, 1.0, appPrice));
+        System.out.println("Aplikacja " + appName + " zainstalowana pomyślnie. Koszt: " + appPrice + " zł. Pozostałe środki na koncie kupującego: " + buyer.cash + " zł");
+    }
+    public boolean isAppInstalled(List<Application> apps) {
+        return apps.contains(apps.get(0));
+    }
+    public double getTotalPriceOfInstalledApps() {
+        double totalPrice = 0.0;
+        for(Application app : apps) {
+            totalPrice += app.price;
+        }
+        return totalPrice;
+    }
+    //chce metode  na wypisanie nazw wszystkich zainstalowanych aplikacji w kolejności alfabetycznej,
+
+    public void sortAppsByName() {
+        apps.sort((o1, o2) -> o1.name.compareTo(o2.name));
+    }
+    //wypisane nazw wszystkich zainstalowanych aplikacji od najtańszych do najdroższych.
+    public void sortAppsByPrice() {
+        apps.sort((o1, o2) -> o1.price.compareTo(o2.price));
+    }
+
     public void installAnnApp(String appName) {
         System.out.println("Installing " + appName + "...");
 
@@ -54,7 +86,6 @@ public class Phone extends Device implements Salleable {
 
         System.out.println("App installed successfully from " + appURL.toString() + "!");
     }
-
 
 
     public void sell(Human seller, Human buyer, Double price) {

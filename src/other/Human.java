@@ -36,6 +36,11 @@ public class Human {
         this.name = name;
     }
 
+    public Human(String name,Double cash) {
+        this.name = name;
+        this.cash = cash;
+    }
+
     public void sell() {
         if (isForSale) {
             System.out.println("Niestety, sprzedaż ludzi jest zabroniona i jest to przestępstwo!");
