@@ -5,7 +5,7 @@ import other.Salleable;
 
 import java.util.Objects;
 
-public class Car extends Device implements Salleable {
+public abstract class Car extends Device implements Salleable {
 
     String color;
     public Integer price;
@@ -20,6 +20,10 @@ public class Car extends Device implements Salleable {
         this.model = model;
         this.yearOfProduction = yearOfProduction;
     }
+
+    abstract void refuel();
+
+
 
     public void sell(Human seller, Human buyer, Double price) {
         if(seller.getCar() != this){

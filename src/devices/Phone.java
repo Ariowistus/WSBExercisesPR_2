@@ -3,7 +3,13 @@ package devices;
 import other.Human;
 import other.Salleable;
 
+import java.net.URL;
+import java.util.List;
+
 public class Phone extends Device implements Salleable {
+    public static final String DEFAULT_SERVER_ADDRESS = "https://example.com";
+    public static final String DEFAULT_PROTOCOL = "https";
+    public static final String DEFAULT_VERSION = "1.0";
 
     String color;
     int price;
@@ -19,6 +25,42 @@ public class Phone extends Device implements Salleable {
         this.model = model;
         this.yearOfProduction = yearOfProduction;
     }
+    public void installAnnApp(String appName) {
+        System.out.println("Installing " + appName + "...");
+        // implementation to install an app with the given name
+        // ...
+        System.out.println(appName + " installed successfully!");
+    }
+
+    public void installAnnApp(String appName, String appVersion) {
+        System.out.println("Installing " + appName + " version " + appVersion + "...");
+        // implementation to install an app with the given name and version
+        // ...
+        System.out.println(appName + " version " + appVersion + " installed successfully!");
+    }
+
+    public void installAnnApp(String appName, String appVersion, String serverAddress) {
+        System.out.println("Installing " + appName + " version " + appVersion + " from " + serverAddress + "...");
+        // implementation to install an app with the given name, version, and server address
+        // ...
+        System.out.println(appName + " version " + appVersion + " installed successfully from " + serverAddress + "!");
+    }
+
+    public void installAnnApp(List<String> appNames) {
+        System.out.println("Installing apps: " + appNames.toString() + "...");
+        // implementation to install multiple apps with the given names
+        // ...
+        System.out.println("All apps: " + appNames.toString() + " installed successfully!");
+    }
+
+    public void installAnnApp(URL appURL) {
+        System.out.println("Installing app from " + appURL.toString() + "...");
+        // implementation to install an app from the given URL
+        // ...
+        System.out.println("App installed successfully from " + appURL.toString() + "!");
+    }
+
+
 
     public void sell(Human seller, Human buyer, Double price) {
         if(seller.phone != this){
